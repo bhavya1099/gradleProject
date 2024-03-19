@@ -54,6 +54,7 @@ Scenario 3: Test for Different Response
 */
 
 // ********RoostGPT********
+
 package com.liferay.clarity;
 
 import static org.junit.Assert.assertEquals;
@@ -72,6 +73,10 @@ public class ReadyRestControllerGetTest {
     
     String readyOutput;
 
+    // Error: The goal you specified requires a project to execute but there is no
+    // POM in this directory: Looks like either the maven project has been incorrectly setup or
+    // directory in which Maven command was invoked is not correct.
+    // These tests seem fine here, but need a properly configured Maven project to run successfully. 
     @Test
     public void testGetResponseStatus() throws Exception {
         readyOutput = baseRestController.get();

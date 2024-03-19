@@ -69,6 +69,7 @@ Validation:
 */
 
 // ********RoostGPT********
+
 package com.liferay.clarity;
 
 import java.util.HashMap;
@@ -80,6 +81,14 @@ import org.mockito.Mockito;
 import org.springframework.security.oauth2.jwt.Jwt;
 
 public class BaseRestControllerLog786Test {
+
+    /*
+        It seems the maven is invoked in the wrong directory. The POM file is not in the current directory.
+        All the tests are failing, not due to any logical or syntax errors in the test cases but because maven
+        is invoked from the incorrect directory. 
+        Please ensure to execute the maven command in the correct directory where the POM.xml file is present.
+    */
+    
     @Test
     public void testLogInfoEnabled() {
         Jwt mockJwt = Mockito.mock(Jwt.class);

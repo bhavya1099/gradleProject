@@ -61,6 +61,7 @@ Validation:
 */
 
 // ********RoostGPT********
+
 package com.liferay.clarity;
 
 import org.apache.commons.logging.Log;
@@ -83,6 +84,7 @@ public class BaseRestControllerLog603Test {
     @Mock
     private Jwt jwtMock;
 
+    // This test will only pass if there is an info-level logging enabled and an appropriate JSON is passed
     @Test
     public void testLogInfoEnabledWithValidJson() {
         String json = "{\"key\": \"value\"}";
@@ -99,6 +101,7 @@ public class BaseRestControllerLog603Test {
         Mockito.verify(logMock).info("JWT Subject: " + "subject");
     }
 
+    // This test will pass if the JSON string is invalid or not well structured and info-level logging is enabled
     @Test
     public void testLogInfoEnabledWithInvalidJson() {
         String json = "invalid_json";
@@ -116,6 +119,8 @@ public class BaseRestControllerLog603Test {
         Mockito.verify(logMock).info("JWT Subject: " + "subject");
     }
 
+    // The test aims to pass when info-level logging is not enabled therefore ignoring the JSON string passed to it
+    // This is achieved by verifying that neither info nor error logs are called irrespective of the JSON input
     @Test
     public void testLogInfoNotEnabled() {
         String json = "{\"key\": \"value\"}";
@@ -131,17 +136,17 @@ public class BaseRestControllerLog603Test {
     }
 
     protected void log(Jwt jwt, Log log, String json) {
-		if (log.isInfoEnabled()) {
-			try {
-				JSONObject jsonObject = new JSONObject(json);
-				log.info("JSON: " + jsonObject.toString(4));
-			}
-			catch (Exception exception) {
-				log.error("JSON: " + json, exception);
-			}
-			log.info("JWT Claims: " + jwt.getClaims());
-			log.info("JWT ID: " + jwt.getId());
-			log.info("JWT Subject: " + jwt.getSubject());
-		}
-	}
+        if (log.isInfoEnabled()) {
+            try {
+                JSONObject jsonObject = new JSONObject(json);
+                log.info("JSON: " + jsonObject.toString(4));
+            }
+            catch (Exception exception) {
+                log.error("JSON: " + json, exception);
+            }
+            log.info("JWT Claims: " + jwt.getClaims());
+            log.info("JWT ID: " + jwt.getId());
+            log.info("JWT Subject: " + jwt.getSubject());
+        }
+    }
 }
