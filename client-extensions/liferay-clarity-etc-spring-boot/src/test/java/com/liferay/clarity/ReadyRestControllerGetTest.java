@@ -57,6 +57,7 @@ Validation:
 */
 
 // ********RoostGPT********
+
 package com.liferay.clarity;
 
 import org.junit.Assert;
